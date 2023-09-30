@@ -1,7 +1,6 @@
 import speech_recognition as sr
 import pyttsx3
 import datetime
-from SentenceSegmenter import *
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 def log(tts,stt):#To save conversations
@@ -13,6 +12,19 @@ def log(tts,stt):#To save conversations
         logfile.writelines(str(datetime.datetime.now())+'\n')
         logfile.writelines(str(tl)+'\n')
         logfile.writelines(str(sl)+'\n')
+def ss(x):
+    l=[]
+    a=""
+    for i in range(len(x)):
+        if i==len(x)-1:
+            a+=x[i]
+            l.append(a)
+        elif x[i]!=" ":
+            a+=x[i]
+        else:
+            l.append(a)
+            a=""
+    return l
 def speak(x):#text-to-speech engine
     print("MHAC: ",x)
     a=pyttsx3.init()
